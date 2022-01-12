@@ -2,77 +2,77 @@ apiVersion: '0.1'
 kind: ksonnet.io/registry
 libraries:
   application:
-    version: master
+    version: v0.7-branch
     path: application
   metacontroller:
-    version: master
+    version: v0.7-branch
     path: metacontroller
   profiles:
-    version: master
+    version: v0.7-branch
     path: profiles
   common:
-    version: master
+    version: v0.7-branch
     path: common
   gcp:
-    version: master
+    version: v0.7-branch
     path: gcp
   tensorboard:
-    version: master
+    version: v0.7-branch
     path: tensorboard
   examples:
-    version: master
+    version: v0.7-branch
     path: examples
   jupyter:
-    version: master
+    version: v0.7-branch
     path: jupyter
   tf-training:
-    version: master
+    version: v0.7-branch
     path: tf-training
   openvino:
-    version: master
+    version: v0.7-branch
     path: openvino
   argo:
-    version: master
+    version: v0.7-branch
     path: argo
   pachyderm:
-    version: master
+    version: v0.7-branch
     path: pachyderm
   pipeline:
-    version: master
+    version: v0.7-branch
     path: pipeline
   pytorch-job:
-    version: master
+    version: v0.7-branch
     path: pytorch-job
   new-package-stub:
-    version: master
+    version: v0.7-branch
     path: new-package-stub
   katib:
-    version: master
+    version: v0.7-branch
     path: katib
   automation:
-    version: master
+    version: v0.7-branch
     path: automation
   mpi-job:
-    version: master
+    version: v0.7-branch
     path: mpi-job
   seldon:
-    version: master
+    version: v0.7-branch
     path: seldon
   mxnet-job:
-    version: master
+    version: v0.7-branch
     path: mxnet-job
   nvidia-inference-server:
-    version: master
+    version: v0.7-branch
     path: nvidia-inference-server
   chainer-job:
-    version: master
+    version: v0.7-branch
     path: chainer-job
   kubebench:
-    version: master
+    version: v0.7-branch
     path: kubebench
   modeldb:
-    version: master
+    version: v0.7-branch
     path: modeldb
   tf-batch-predict:
-     version: master
+     version: v0.7-branch
      path: tf-batch-predict
