@@ -84,6 +84,7 @@
             name: "v1",
             served: true,
             storage: true,
+            schema: { openAPIV3Schema: openAPIV3Schema },
           },
         ],
       },
