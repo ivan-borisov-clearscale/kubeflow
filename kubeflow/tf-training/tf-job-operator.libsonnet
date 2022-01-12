@@ -1,7 +1,7 @@
 {
   local k = import "k.libsonnet",
   local util = import "kubeflow/common/util.libsonnet",
-  local deployment = k.apps.v1beta1.deployment,
+  local deployment = k.apps.v1.deployment,
 
   new(_env, _params):: {
     local params = _params + _env,
@@ -50,7 +50,7 @@
     },
 
     local tfJobCrd = {
-      apiVersion: "apiextensions.k8s.io/v1beta1",
+      apiVersion: "apiextensions.k8s.io/v1",
       kind: "CustomResourceDefinition",
       metadata: {
         name: "tfjobs.kubeflow.org",
@@ -215,11 +215,11 @@
     // set the right roleTypes
     local roleType(deploymentScope) = {
       return:: if deploymentScope == "namespace" && params.deploymentNamespace != null then [
-        k.rbac.v1beta1.role,
-        k.rbac.v1beta1.roleBinding,
+        k.rbac.v1.role,
+        k.rbac.v1.roleBinding,
       ] else [
-        k.rbac.v1beta1.clusterRole,
-        k.rbac.v1beta1.clusterRoleBinding,
+        k.rbac.v1.clusterRole,
+        k.rbac.v1.clusterRoleBinding,
       ],
     }.return,
     local roles = roleType(params.deploymentScope),
@@ -227,7 +227,7 @@
     local operatorRoleBinding = roles[1],
 
     // consolidated rules shared between tfOperatorRole and tfUiRole
-    local rule = k.rbac.v1beta1.role.rulesType,
+    local rule = k.rbac.v1.role.rulesType,
     local rules = {
       tfJobsRule:: rule.new() + rule.
         withApiGroupsMixin([
@@ -274,7 +274,7 @@
     }.return,
     local tfOperatorRole = role(
       {
-        apiVersion: "rbac.authorization.k8s.io/v1beta1",
+        apiVersion: "rbac.authorization.k8s.io/v1",
         kind: operatorRole.new().kind,
         metadata: {
           labels: {
@@ -282,7 +282,7 @@
           },
           name: "tf-job-operator",
         },
-      } + k.rbac.v1beta1.role.withRulesMixin([
+      } + k.rbac.v1.role.withRulesMixin([
         rules.tfJobsRule,
         rules.tfCoreRule,
       ] + if util.toBool(params.enableGangScheduling) then [
@@ -292,7 +292,7 @@
     tfOperatorRole:: tfOperatorRole,
 
     local tfOperatorRoleBinding = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: operatorRoleBinding.new().kind,
       metadata: {
         labels: {
@@ -466,7 +466,7 @@
     tfUiDeployment:: tfUiDeployment,
 
     local tfUiRole = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: operatorRole.new().kind,
       metadata: {
         labels: {
@@ -474,7 +474,7 @@
         },
         name: "tf-job-dashboard",
       },
-    } + k.rbac.v1beta1.role.withRulesMixin([
+    } + k.rbac.v1.role.withRulesMixin([
       rules.tfJobsRule,
       rules.tfCoreRule.withResourcesMixin([
         "pods/log",
@@ -484,7 +484,7 @@
     tfUiRole:: tfUiRole,
 
     local tfUiRoleBinding = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: operatorRoleBinding.new().kind,
       metadata: {
         labels: {
