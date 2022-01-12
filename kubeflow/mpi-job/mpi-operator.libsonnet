@@ -6,7 +6,7 @@
     local params = _params + _env,
 
     local mpiJobCrd = {
-      apiVersion: "apiextensions.k8s.io/v1beta1",
+      apiVersion: "apiextensions.k8s.io/v1",
       kind: "CustomResourceDefinition",
       metadata: {
         name: "mpijobs.kubeflow.org",
