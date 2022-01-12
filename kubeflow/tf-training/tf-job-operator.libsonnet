@@ -280,7 +280,6 @@
       } + k.rbac.v1beta1.role.withRulesMixin([
         rules.tfJobsRule,
         rules.tfCoreRule,
-        rules.tfAppsRule,
       ] + if util.toBool(params.enableGangScheduling) then [
         rules.tfGangScheduleRule,
       ] else []),
@@ -471,7 +470,6 @@
         "pods/log",
         "namespaces",
       ]),
-      rules.tfAppsRule,
     ],),
     tfUiRole:: tfUiRole,
 
