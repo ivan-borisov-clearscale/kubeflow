@@ -138,7 +138,7 @@
     tfJobContainer:: tfJobContainer,
 
     local tfJobDeployment = {
-      apiVersion: "extensions/v1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       metadata: {
         name: "tf-job-operator",
@@ -431,7 +431,7 @@
     },
 
     local tfUiDeployment = {
-      apiVersion: "extensions/v1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       metadata: {
         name: "tf-job-dashboard",
