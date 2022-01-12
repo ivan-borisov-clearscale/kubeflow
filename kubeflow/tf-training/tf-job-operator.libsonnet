@@ -145,6 +145,11 @@
         namespace: params.namespace,
       },
       spec: {
+        selector: {
+          matchLabels: {
+            name: "tf-job-operator",
+          }
+        },
         replicas: 1,
         template: {
           metadata: {
@@ -438,6 +443,11 @@
         namespace: params.namespace,
       },
       spec: {
+        selector: {
+          matchLabels: {
+            name: "tf-job-dashboard",
+          }
+        },
         template: {
           metadata: {
             labels: {
