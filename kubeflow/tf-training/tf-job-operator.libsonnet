@@ -8,7 +8,7 @@
 
     // tfJobCrd schema
     local openAPIV3Schema = {
-      required: [spec],
+      required: ["spec"],
       type: "object",
       properties: {
         spec: {
