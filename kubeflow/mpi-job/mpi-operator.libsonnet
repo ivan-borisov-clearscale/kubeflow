@@ -20,19 +20,20 @@
             storage: true,
             schema: {
               openAPIV3Schema: {
+                type: "object",
                 properties: {
                   spec: {
+                    type: "object",
                     title: "The MPIJob spec",
                     description: "Either `gpus` or `replicas` should be specified, but not both",
                     oneOf: [
                       {
                         properties: {
                           gpus: {
-                            title: "Total number of GPUs",
-                            description: "Valid values are 1, 2, 4, or any multiple of 8",
+                            //title: "Total number of GPUs",
+                            //description: "Valid values are 1, 2, 4, or any multiple of 8",
                             oneOf: [
                               {
-                                type: "integer",
                                 enum: [
                                   1,
                                   2,
@@ -40,7 +41,6 @@
                                 ],
                               },
                               {
-                                type: "integer",
                                 multipleOf: 8,
                                 minimum: 8,
                               },
@@ -54,9 +54,9 @@
                       {
                         properties: {
                           replicas: {
-                            title: "Total number of replicas",
-                            description: "The GPU resource limit should be specified for each replica",
-                            type: "integer",
+                            //title: "Total number of replicas",
+                            //description: "The GPU resource limit should be specified for each replica",
+                            //type: "integer",
                             minimum: 1,
                           },
                         },

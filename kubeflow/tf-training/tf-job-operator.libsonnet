@@ -15,6 +15,7 @@
           required: [],
           properties: {
             tfReplicaSpecs: {
+              type: "object",
               required: [],
               properties: {
                 // The validation works when the configuration contains
