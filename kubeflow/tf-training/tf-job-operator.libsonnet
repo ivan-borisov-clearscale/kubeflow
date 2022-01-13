@@ -12,6 +12,7 @@
       type: "object",
       properties: {
         spec: {
+          type: "object",
           required: [],
           properties: {
             tfReplicaSpecs: {
