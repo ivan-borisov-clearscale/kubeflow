@@ -8,7 +8,8 @@
 
     // tfJobCrd schema
     local openAPIV3Schema = {
-      required: [],
+      required: [spec],
+      type: "object",
       properties: {
         spec: {
           required: [],
@@ -19,6 +20,7 @@
                 // The validation works when the configuration contains
                 // `Worker`, `PS` or `Chief`. Otherwise it will not be validated.
                 Worker: {
+                  type: "object",
                   required: [],
                   properties: {
                     // We do not validate pod template because of
@@ -30,6 +32,7 @@
                   },
                 },
                 PS: {
+                  type: "object",
                   required: [],
                   properties: {
                     replicas: {
@@ -39,6 +42,7 @@
                   },
                 },
                 Chief: {
+                  type: "object",
                   required: [],
                   properties: {
                     replicas: {
