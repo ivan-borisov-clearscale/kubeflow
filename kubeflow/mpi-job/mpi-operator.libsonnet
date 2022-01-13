@@ -15,7 +15,7 @@
         group: "kubeflow.org",
         versions: [
           {
-            name: "v1alpha1",
+            name: "v1alpha2",
             served: true,
             storage: true,
             schema: {
@@ -288,8 +288,8 @@
                 image: params.image,
                 args: [
                   "-alsologtostderr",
-                  //"--gpus-per-node",
-                  //std.toString(params.gpusPerNode),
+                  "--gpus-per-node",
+                  std.toString(params.gpusPerNode),
                   "--kubectl-delivery-image",
                   params.kubectlDeliveryImage,
                 ],
