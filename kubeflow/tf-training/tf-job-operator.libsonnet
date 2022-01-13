@@ -8,14 +8,18 @@
 
     // tfJobCrd schema
     local openAPIV3Schema = {
+      required: [],
       properties: {
         spec: {
+          required: [],
           properties: {
             tfReplicaSpecs: {
+              required: [],
               properties: {
                 // The validation works when the configuration contains
                 // `Worker`, `PS` or `Chief`. Otherwise it will not be validated.
                 Worker: {
+                  required: [],
                   properties: {
                     // We do not validate pod template because of
                     // https://github.com/kubernetes/kubernetes/issues/54579
@@ -26,6 +30,7 @@
                   },
                 },
                 PS: {
+                  required: [],
                   properties: {
                     replicas: {
                       type: "integer",
@@ -34,6 +39,7 @@
                   },
                 },
                 Chief: {
+                  required: [],
                   properties: {
                     replicas: {
                       type: "integer",
@@ -78,7 +84,6 @@
             type: "date",
           },
         ],
-        //validation: { openAPIV3Schema: openAPIV3Schema },
         versions: [
           {
             name: "v1",
