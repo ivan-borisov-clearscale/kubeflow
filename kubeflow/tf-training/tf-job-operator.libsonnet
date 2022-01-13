@@ -78,7 +78,7 @@
             type: "date",
           },
         ],
-        validation: { openAPIV3Schema: openAPIV3Schema },
+        //validation: { openAPIV3Schema: openAPIV3Schema },
         versions: [
           {
             name: "v1",

@@ -13,7 +13,64 @@
       },
       spec: {
         group: "kubeflow.org",
-        version: "v1alpha1",
+        versions: [
+          {
+            name: "v1alpha1",
+            served: true,
+            storage: true,
+            schema: {
+              openAPIV3Schema: {
+                properties: {
+                  spec: {
+                    title: "The MPIJob spec",
+                    description: "Either `gpus` or `replicas` should be specified, but not both",
+                    oneOf: [
+                      {
+                        properties: {
+                          gpus: {
+                            title: "Total number of GPUs",
+                            description: "Valid values are 1, 2, 4, or any multiple of 8",
+                            oneOf: [
+                              {
+                                type: "integer",
+                                enum: [
+                                  1,
+                                  2,
+                                  4,
+                                ],
+                              },
+                              {
+                                type: "integer",
+                                multipleOf: 8,
+                                minimum: 8,
+                              },
+                            ],
+                          },
+                        },
+                        required: [
+                          "gpus",
+                        ],
+                      },
+                      {
+                        properties: {
+                          replicas: {
+                            title: "Total number of replicas",
+                            description: "The GPU resource limit should be specified for each replica",
+                            type: "integer",
+                            minimum: 1,
+                          },
+                        },
+                        required: [
+                          "replicas",
+                        ],
+                      },
+                    ],
+                  },
+                },
+              },
+            },
+          },
+        ],
         scope: "Namespaced",
         names: {
           plural: "mpijobs",
@@ -23,57 +80,6 @@
             "mj",
             "mpij",
           ],
-        },
-        validation: {
-          openAPIV3Schema: {
-            properties: {
-              spec: {
-                title: "The MPIJob spec",
-                description: "Either `gpus` or `replicas` should be specified, but not both",
-                oneOf: [
-                  {
-                    properties: {
-                      gpus: {
-                        title: "Total number of GPUs",
-                        description: "Valid values are 1, 2, 4, or any multiple of 8",
-                        oneOf: [
-                          {
-                            type: "integer",
-                            enum: [
-                              1,
-                              2,
-                              4,
-                            ],
-                          },
-                          {
-                            type: "integer",
-                            multipleOf: 8,
-                            minimum: 8,
-                          },
-                        ],
-                      },
-                    },
-                    required: [
-                      "gpus",
-                    ],
-                  },
-                  {
-                    properties: {
-                      replicas: {
-                        title: "Total number of replicas",
-                        description: "The GPU resource limit should be specified for each replica",
-                        type: "integer",
-                        minimum: 1,
-                      },
-                    },
-                    required: [
-                      "replicas",
-                    ],
-                  },
-                ],
-              },
-            },
-          },
         },
       },
     },
@@ -282,8 +288,8 @@
                 image: params.image,
                 args: [
                   "-alsologtostderr",
-                  "--gpus-per-node",
-                  std.toString(params.gpusPerNode),
+                  //"--gpus-per-node",
+                  //std.toString(params.gpusPerNode),
                   "--kubectl-delivery-image",
                   params.kubectlDeliveryImage,
                 ],

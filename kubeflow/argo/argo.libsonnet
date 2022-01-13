@@ -27,13 +27,14 @@
         },
         scope: "Namespaced",
         version: "v1alpha1",
+        // borrowed versions from here: https://github.com/argoproj/argo-workflows/blob/c2b3e8e93a307842db623c99a7643d3974cee6af/manifests/install.yaml
       },
     },  // crd
     workflowCRD:: workflowCRD,
 
     // Deploy the controller
     local workflowController = {
-      apiVersion: "extensions/v1beta1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       metadata: {
         labels: {
@@ -108,7 +109,7 @@
     workflowController:: workflowController,
 
     local argoUI = {
-      apiVersion: "extensions/v1beta1",
+      apiVersion: "apps/v1",
       kind: "Deployment",
       metadata: {
         labels: {
@@ -335,7 +336,7 @@
     // scope it to a particular namespace in which case we might be able to restrict the permissions
     // to a particular namespace.
     local argoClusterRole = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: "ClusterRole",
       metadata: {
         labels: {
@@ -402,7 +403,7 @@
     argoClusterRole:: argoClusterRole,
 
     local argoClusterRoleBinding = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: "ClusterRoleBinding",
       metadata: {
         labels: {
@@ -441,7 +442,7 @@
     // scope it to a particular namespace in which case we might be able to restrict the permissions
     // to a particular namespace.
     local argoUIRole = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: "ClusterRole",
       metadata: {
         labels: {
@@ -490,7 +491,7 @@
     argoUIRole:: argoUIRole,
 
     local argUIClusterRoleBinding = {
-      apiVersion: "rbac.authorization.k8s.io/v1beta1",
+      apiVersion: "rbac.authorization.k8s.io/v1",
       kind: "ClusterRoleBinding",
       metadata: {
         labels: {
