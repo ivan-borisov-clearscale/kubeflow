@@ -288,8 +288,8 @@
                 image: params.image,
                 args: [
                   "-alsologtostderr",
-                  "--gpus-per-node",
-                  std.toString(params.gpusPerNode),
+                  //"--gpus-per-node",
+                  //std.toString(params.gpusPerNode),
                   "--kubectl-delivery-image",
                   params.kubectlDeliveryImage,
                 ],
