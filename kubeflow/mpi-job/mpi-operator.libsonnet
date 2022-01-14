@@ -114,6 +114,7 @@
             "create",
             "list",
             "watch",
+            "update",
           ],
         },
         {
@@ -125,11 +126,17 @@
             "pods",
           ],
           verbs: [
+            "create",
             "get",
+            "list",
+            "watch",
+            "delete",
+            "update",
+            "patch",
           ],
         },
+        // This is needed for the launcher Role.
         {
-          // This is needed for the launcher Role.
           apiGroups: [
             "",
           ],
@@ -138,6 +145,19 @@
           ],
           verbs: [
             "create",
+          ],
+        },
+        {
+          apiGroups: [
+            "",
+          ],
+          resources: [
+            "endpoints",
+          ],
+          verbs: [
+            "create",
+            "get",
+            "update",
           ],
         },
         {
@@ -164,6 +184,7 @@
             "create",
             "list",
             "watch",
+            "update",
           ],
         },
         {
@@ -226,6 +247,22 @@
           ],
           resources: [
             "mpijobs",
+            "mpijobs/finalizers",
+            "mpijobs/status",
+          ],
+          verbs: [
+            "*",
+          ],
+        },
+        {
+          apiGroups: [
+            "scheduling.incubator.k8s.io",
+            "scheduling.sigs.dev",
+            "scheduling.volcano.sh",
+          ],
+          resources: [
+            "queues",
+            "podgroups",
           ],
           verbs: [
             "*",
