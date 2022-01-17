@@ -36,7 +36,7 @@ local k = import "k.libsonnet";
       local kubebenchConfigRoot = "/kubebench/config";
       local kubebenchDataRoot = "/kubebench/data";
       local kubebenchExpRoot = "/kubebench/experiments";
-      local configuratorOutputDir = "/kubebench/configurator/output";
+      local configuratorOutputDir = "/kubebench/config/configurator/output";
       local manifestOutput = configuratorOutputDir + "/kf-job-manifest.yaml";
       local experimentIdOutput = configuratorOutputDir + "/experiment-id";
 
@@ -331,17 +331,10 @@ local k = import "k.libsonnet";
               "configurator",
               controllerImage,
               [
-                "configurator",
-                "--template-ref=" + std.toString(mainJobKsPrototypeRef),
-                "--config=" + mainJobConfig,
-                "--namespace=" + namespace,
-                "--owner-references=" + std.toString(std.prune(ownerReferences)),
-                "--volumes=" + std.toString(std.prune(baseVols)),
-                "--volume-mounts=" + std.toString(std.prune(baseVolMnts)),
-                "--env-vars=" + std.toString(std.prune(baseEnvVars + expEnvVars(isConfigurator=true))),
-                "--manifest-output=" + manifestOutput,
-                "--experiment-id-output=" + experimentIdOutput,
-              ],
+		"sh",
+"-c",
+"wget -O ks.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v0.13.1/ks_0.13.1_linux_amd64.tar.gz && tar -xvf ks.tar.gz && mv ks_0.13.1_linux_amd64/ks /app/ks_0.11.0_linux_amd64/ && configurator --template-ref='" + std.toString(mainJobKsPrototypeRef) + "' --config='" + mainJobConfig + "' --namespace=" + namespace + " --owner-references='" + std.toString(std.prune(ownerReferences)) + "' --volumes='" + std.toString(std.prune(baseVols)) + "' --volume-mounts='" + std.toString(std.prune(baseVolMnts)) + "' --env-vars='" + std.toString(std.prune(baseEnvVars + expEnvVars(isConfigurator=true))) + "' --manifest-output=" + manifestOutput + " --experiment-id-output=" + experimentIdOutput + " && ls -l /kubebench/config/configurator/output/ && cat " + manifestOutput
+],
               envVars=secretEnvVars + baseEnvVars,
               volMnts=secretVolMnts + baseVolMnts,
               outParams=[

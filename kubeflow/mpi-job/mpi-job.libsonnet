@@ -20,7 +20,7 @@
         && params.pvcName != 'null' && params.volumeMountPath != 'null' then true else false,
 
     mpiJobSimple:: {
-      apiVersion: "kubeflow.org/v1",
+      apiVersion: "kubeflow.org/v1alpha1",
       kind: "MPIJob",
       metadata: {
         name: params.name,
@@ -42,7 +42,7 @@
     },
 
     mpiJobCustom:: {
-      apiVersion: "kubeflow.org/v1",
+      apiVersion: "kubeflow.org/v1alpha1",
       kind: "MPIJob",
       metadata: {
         name: params.name,

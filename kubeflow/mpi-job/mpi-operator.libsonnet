@@ -15,7 +15,7 @@
         group: "kubeflow.org",
         versions: [
           {
-            name: "v1alpha2",
+            name: "v1alpha1",
             served: true,
             storage: true,
             schema: {
