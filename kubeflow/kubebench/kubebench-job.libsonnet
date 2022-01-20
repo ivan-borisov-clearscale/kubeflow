@@ -279,18 +279,18 @@ local k = import "k.libsonnet";
                     ],
                   ),
                 ],
-                [
-                  buildStep(
-                    "wait-for-main-job",
-                    "main-job-monitor",
-                    argParams=[
-                      {
-                        name: "kf-job-manifest",
-                        value: "{{steps.run-configurator.outputs.parameters.kf-job-manifest}}",
-                      },
-                    ],
-                  ),
-                ],
+                //[
+                //  buildStep(
+                //    "wait-for-main-job",
+                //    "main-job-monitor",
+                //    argParams=[
+                //      {
+                //        name: "kf-job-manifest",
+                //        value: "{{steps.run-configurator.outputs.parameters.kf-job-manifest}}",
+                //      },
+                //    ],
+                //  ),
+                //],
                 if postJobImage != "null" && postJobArgs != "null" then
                 [
                   buildStep(
