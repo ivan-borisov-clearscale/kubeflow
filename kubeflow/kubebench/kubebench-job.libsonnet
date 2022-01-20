@@ -356,16 +356,16 @@ local k = import "k.libsonnet";
               "main-job",
               "create",
               "{{inputs.parameters.kf-job-manifest}}",
-              successCondition="status.startTime",
+              //successCondition="status.startTime",
               inParams=[{ name: "kf-job-manifest" }],
             ),
-            buildResourceTemplate(
-              "main-job-monitor",
-              "get",
-              "{{inputs.parameters.kf-job-manifest}}",
-              successCondition="status.completionTime",
-              inParams=[{ name: "kf-job-manifest" }],
-            ),
+            //buildResourceTemplate(
+            //  "main-job-monitor",
+            //  "get",
+            //  "{{inputs.parameters.kf-job-manifest}}",
+            //  successCondition="status.completionTime",
+            //  inParams=[{ name: "kf-job-manifest" }],
+            //),
             if postJobImage != "null" && postJobArgs != "null" then
             buildTemplate(
               "post-job",

@@ -34,8 +34,8 @@
                 required: ["spec"],
                 "properties": {
                   status: {
-                    "x-kubernetes-preserve-unknown-fields": true,
                     type: "object",
+                    "x-kubernetes-preserve-unknown-fields": true,
                   },
                   "spec": {
                     type: "object",
